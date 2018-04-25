@@ -1,7 +1,12 @@
-var MPPclient = require("mpp-client");
-var Client = new MPPclient("ws://www.multiplayerpiano.com");
-Client.setChannel("lobby");
-Client.start();
-Client.on("connect", function(){
-	Client.sendArray([{m:'userset', set:{name:'\ufffc'}}]);
+console.log('hello from mpptest.js');
+var Client = require("mpp-client");
+var client = new Client("ws://www.multiplayerpiano.com");
+client.setChannel("lobby");
+client.start();
+client.on("connect", function(){
+	console.log('mpp connected');
+	client.sendArray([{m:'userset', set:{name:'\ufffc'}}]);
+});
+client.on("disconnect", function(){
+	console.log('mpp disconnected');
 });
